@@ -73,6 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+// DB MySQL
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
@@ -95,9 +96,34 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
+// DB Oracle
 $db['dbOracle'] = array(
 	'hostname' => '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SID=ORCL)))',
 	'username' => 'maulana',
 	'password' => 'maulana123',
 	'dbdriver' => 'oci8',
+);
+
+// DB SQL Server
+$db['dbSqlserver'] = array(
+	'dsn'	=> '',
+	'hostname' => 'localhost',
+	'port' => '1433',
+	'username' => 'sa',
+	'password' => 'Qwerty123456',
+	'database' => 'apasda',
+	'dbdriver' => 'sqlsrv',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
 );
