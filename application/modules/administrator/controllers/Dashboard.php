@@ -40,7 +40,7 @@ class Dashboard extends CI_Controller {
 	public function index(){
 		self::actionCssJs();
 		$this->data['title'] = 'Dashboard';
-		$this->data['pegawai'] = $this->dbOracle->query("SELECT * FROM PEGAWAI")->result();
+		// $this->data['pegawai'] = $this->dbOracle->query("SELECT * FROM PEGAWAI")->result();
 		$this->template->load('layouts/main','dashboard/index', $this->data);
 	}
 }
