@@ -75,13 +75,28 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">LIHAT <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="<?=site_url('administrator/dataPegawai')?>">Data Pegawai</a></li>
-                <li><a href="#">Data Ringkas</a></li>
-              </ul>
-            </li>
+              <?php 
+                $user_id = $this->session->userdata('user_id');
+                $menu = $this->M_menu->menu($user_id)->result();
+                foreach ($menu as $m) {
+                    $subMenu = $this->M_menu->sub_menu($m->id);
+                    if ($subMenu->num_rows() < 1) {
+                      echo "<li><a href='#'>".$m->description."</a></li>";
+                    }else{
+                      echo "
+                        <li class='dropdown'>
+                          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$m->description."<span class='caret'></span></a>
+                          <ul class='dropdown-menu' role='menu'>";
+                            foreach ($subMenu->result() as $sm) {
+                               echo "<li><a href='".base_url().$sm->url."'>".$sm->title."</a></li>";
+                            } 
+                      echo "      
+                          </ul>
+                        </li>
+                      ";
+                    }
+                }
+              ?>
           </ul>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">

@@ -11,11 +11,6 @@ class DataPegawai extends CI_Controller {
 			// redirect them to the login page
 			redirect('administrator/auth/login', 'refresh');
 		}
-		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
-		{
-			// redirect them to the home page because they must be an administrator to view this
-			show_error('You must be an administrator to view this page.');
-		}
 
 		$this->dbOracle = $this->load->database('dbOracle',TRUE);
 	}
