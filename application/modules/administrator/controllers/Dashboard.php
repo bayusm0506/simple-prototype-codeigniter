@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller {
 			redirect('administrator/auth/login', 'refresh');
 		}
 
-		$this->dbOracle = $this->load->database('dbOracle',TRUE);
+		// $this->dbOracle = $this->load->database('dbOracle',TRUE);
 	}
 
 	public function actionCssJs(){
