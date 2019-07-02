@@ -76,25 +76,47 @@
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
               <?php 
-                $user_id = $this->session->userdata('user_id');
-                $menu = $this->M_menu->menu($user_id)->result();
+                // $user_id = $this->session->userdata('user_id');
+                // $menu = $this->M_menu->menu($user_id)->result();
+                // foreach ($menu as $m) {
+                //     $subMenu = $this->M_menu->sub_menu($m->id);
+                //     if ($subMenu->num_rows() < 1) {
+                //       echo "<li><a href='#'>".$m->description."</a></li>";
+                //     }else{
+                //       echo "
+                //         <li class='dropdown'>
+                //           <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$m->description."<span class='caret'></span></a>
+                //           <ul class='dropdown-menu' role='menu'>";
+                //             foreach ($subMenu->result() as $sm) {
+                //                echo "<li><a href='".base_url().$sm->url."'>".$sm->title."</a></li>";
+                //             } 
+                //       echo "      
+                //           </ul>
+                //         </li>
+                //       ";
+                //     }
+                // }
+              ?>
+              <?php
+                $role_id = $this->session->userdata('role_id');
+                $menu = $this->M_menu->menu($role_id)->result();
                 foreach ($menu as $m) {
-                    $subMenu = $this->M_menu->sub_menu($m->id);
-                    if ($subMenu->num_rows() < 1) {
-                      echo "<li><a href='#'>".$m->description."</a></li>";
-                    }else{
-                      echo "
-                        <li class='dropdown'>
-                          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$m->description."<span class='caret'></span></a>
-                          <ul class='dropdown-menu' role='menu'>";
-                            foreach ($subMenu->result() as $sm) {
-                               echo "<li><a href='".base_url().$sm->url."'>".$sm->title."</a></li>";
-                            } 
-                      echo "      
-                          </ul>
-                        </li>
-                      ";
-                    }
+                  $subMenu = $this->M_menu->sub_menu($m->id);
+                  if ($subMenu->num_rows() < 1) {
+                      echo "<li><a href='#'>".$m->menu."</a></li>";
+                  }else{
+                    echo "
+                      <li class='dropdown'>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$m->menu."<span class='caret'></span></a>
+                        <ul class='dropdown-menu' role='menu'>";
+                          foreach ($subMenu->result() as $sm) {
+                             echo "<li><a href='".base_url().$sm->url."'>".$sm->title."</a></li>";
+                          } 
+                    echo "      
+                        </ul>
+                      </li>
+                    ";
+                  }
                 }
               ?>
           </ul>
